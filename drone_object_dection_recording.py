@@ -42,8 +42,9 @@ class AVAI:
 
     # Load Model -> Convert to Blob -> Set Network Path -> Get Detections -> Get Score -> Apply Non Max Suppression -> Show Bounding Boxes, Labels, & Scores
     def object_detection(self, frame):
-        [h, w, d] = frame.shape
+        [h, w, d] = frame.shape # shape frame of OBB
 
+        # capture the frame
         l = max((h, w))
         img = np.zeros((l, l, 3), np.uint8)
         img[0:h, 0:w] = frame
@@ -62,13 +63,13 @@ class AVAI:
         for i in range(rows):
             classes_scores = preds[0][i][4:]
             (minScore, maxScore, minClassLoc, (x, maxClassIndex)) = cv2.minMaxLoc(classes_scores)
-            if maxScore >= 0.55:
+            if maxScore >= 0.55: # threshold
                 box = [
                     preds[0][i][0] - (0.5 * preds[0][i][2]),
                     preds[0][i][1] - (0.5 * preds[0][i][3]),
                     preds[0][i][2],
                     preds[0][i][3]]
-                
+                #classification 
                 boxes.append(box)
                 scores.append(maxScore)
                 class_ids.append(maxClassIndex)
@@ -86,7 +87,8 @@ class AVAI:
         for i in range(len(result_boxes)):
             index = result_boxes[i]
             box = boxes[index] #[x,y,w,h]
-    
+
+            # visuals of detection
             detection = {
                 "class_id": class_ids[index],
                 "class_name": self.labels[class_ids[index]],
@@ -120,12 +122,12 @@ class AVAI:
             center_point.append([int(cx),int(cy)])
             bbox_area.append(area)
         
-        if len(bbox_area) !=0:
+        if len(bbox_area) !=0: # detection works
             i = bbox_area.index(max(bbox_area))
             center_x = center_point[i][0]
             center_y = center_point[i][1]
             bbox_area_1 = bbox_area[i]
             result = center_x,center_y,bbox_area_1
-            return frame, result
+            return frame, result # output of the bounding box
         else:
             return frame, None
