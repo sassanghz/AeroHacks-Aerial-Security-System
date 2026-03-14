@@ -1,0 +1,5 @@
+names:
+- face
+nc: 1
+train: /content/drive/MyDrive/dataset/train/images
+val: /content/drive/MyDrive/dataset/valid/images
