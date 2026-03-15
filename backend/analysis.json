@@ -1,0 +1,22 @@
+{
+  "age": "20-30",
+  "skin_tone": "medium",
+  "facial_features": [
+    "thick curly hair",
+    "glasses",
+    "beard"
+  ],
+  "clothing": [
+    "white hoodie",
+    "black zip-up jacket"
+  ],
+  "injuries_or_condition": [
+    "None visible"
+  ],
+  "uncertainty": [
+    "partially obscured by glasses",
+    "partially obscured by hair"
+  ],
+  "frame_id": 1276,
+  "updated_at": 1773579619.31575
+}
