@@ -27,7 +27,7 @@ def text_to_speech_file(
     if not api_key:
         raise ValueError("Missing API key. Pass api_key or set GEMINI_API_KEY.")
 
-    client = genai.Client(api_key="AIzaSyA_mByAp6NkP1PzOsgm-erAH-dQbLZCPnM")
+    client = genai.Client(api_key="API_KEY")
     content = f"In a VERY strict and angry tone, say: {text}"
     response = client.models.generate_content(
         model=model,
